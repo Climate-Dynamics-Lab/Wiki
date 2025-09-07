@@ -86,6 +86,9 @@ nav:
             - climate_models/isca/index.md
         - CESM:
             - climate_models/cesm/index.md
+            - Installation: climate_models/cesm/installation.md
+            - Basics: climate_models/cesm/basics.md
+            - First Run: climate_models/cesm/first_run.md
     - Data:
         - data/index.md
         - ERA5:
