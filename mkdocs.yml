@@ -4,6 +4,7 @@ repo_name: Climate-Dynamics-Lab/Wiki
 
 theme:
   name: material
+  custom_dir: overrides       # So can download jupyter notebook pages
   # 404 page
   static_templates:
       - 404.html
@@ -32,7 +33,9 @@ theme:
 
 plugins:
   - search
-  - mkdocs-jupyter
+  - mkdocs-jupyter:
+        ignore_h1_titles: false
+        include_source: True
   - mkdocstrings:
         default_handler: python
         handlers:
@@ -70,3 +73,17 @@ nav:
     - Contributing:
         - contributing/index.md
         - MkDocs: contributing/mkdocs.md
+    - HPC Basics:
+        - hpc_basics/index.md
+    - Climate Models:
+        - climate_models/index.md
+        - Isca: climate_models/isca.md
+        - CESM:
+            - climate_models/cesm/index.md
+    - Data:
+        - data/index.md
+        - ERA5:
+            - data/era5/index.md
+        - CMIP:
+            - data/cmip/index.md
+            - CEDA/ESGF: data/cmip/CEDAESGF_Wrapper.ipynb  # takes title from first #H1 heading
