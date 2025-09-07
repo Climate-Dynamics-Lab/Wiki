@@ -1,4 +1,4 @@
-# Contributing to the website
+# Contributing
 To contribute to the website, one can follow the following steps:
 
 1. Ensure your personal Github profile is a member of the Climate Dynamics Lab [organization](https://github.com/orgs/Climate-Dynamics-Lab/people).

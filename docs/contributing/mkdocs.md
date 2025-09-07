@@ -2,7 +2,7 @@
 
 MkDocs is a package which produces a website based on a sequence of markdown pages. It also automatically produces documentation from code comments.
 
-## Useful Sources
+## Resources
 
 * [Material for MkDocs](https://squidfunk.github.io/mkdocs-material/getting-started/): Great website with instructions of how to make and publish website as well as how to make website look nice.
 * [MkDocs](https://www.mkdocs.org/): Official website
