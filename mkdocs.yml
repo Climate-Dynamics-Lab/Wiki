@@ -95,3 +95,6 @@ nav:
         - CMIP:
             - data/cmip/index.md
             - CEDA/ESGF: data/cmip/CEDAESGF_Wrapper.ipynb  # takes title from first #H1 heading
+    - Software:
+        - software/index.md
+        - IDE: software/ide.md
