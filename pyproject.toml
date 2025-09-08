@@ -8,18 +8,18 @@ version = "1.0.0"
 description = "Useful tools for the climate dynamics lab at St Andrews"
 readme = "README.md"
 requires-python = ">=3.11"
-license = { text = "MIT" }
+license = "MIT"  # or whichever SPDX identifier matches your license
+license-files = ["LICENSE"]
 authors = [
   { name = "Josh Duffield", email = "jamd1@st-andrews.ac.uk" }
 ]
 
 # Install below through pip install .
-dependencies = [
-  "xarray",
-  "numpy",
-  "matplotlib",
-]
+dependencies = ["xarray", "numpy", "matplotlib", "pandas", "intake-esgf"]
 
 [project.optional-dependencies]
 docs = ["mkdocs", "mkdocs-material", "mkdocs-jupyter", "mkdocstrings-python"]      # install with pip install ".[docs]"
 dev = ["pytest", "flake8"]                                  # install with pip install ".[dev]"
+
+[tool.setuptools]
+packages = ["climdyn_tools"]  # only include the package(s) you want

@@ -101,3 +101,8 @@ nav:
     - Software:
         - software/index.md
         - IDE: software/ide.md
+        - Python: software/python.md
+    - Code:
+        - code/index.md
+        - CEDA/ESGF:
+            - Base: code/ceda_esgf/base.md

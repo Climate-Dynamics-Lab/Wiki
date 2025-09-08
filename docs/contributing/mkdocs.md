@@ -7,6 +7,7 @@ MkDocs is a package which produces a website based on a sequence of markdown pag
 * [Material for MkDocs](https://squidfunk.github.io/mkdocs-material/getting-started/): Great website with instructions of how to make and publish website as well as how to make website look nice.
 * [MkDocs](https://www.mkdocs.org/): Official website
 * [MkDocs - Jupyter](https://github.com/danielfrg/mkdocs-jupyter): How to make a web page from a Jupyter notebook (`.ipynb`) or Python script (`.py`).
+* [Tutorial](https://realpython.com/python-project-documentation-with-mkdocs/): Useful step by step instructions.
 
 ## Installation
 To install MkDocs, run:
