@@ -124,7 +124,7 @@ we need the `example_depend.sh` script including the dependency slurm command.
     #SBATCH --mail-type=END # send email at job completion
     #SBATCH --mail-user=$USER@st-andrews.ac.uk # email address
     #SBATCH --partition=debug # queue to run on
-    #SBATCH --dependency=afterok:${5}           # Only run after job submitted
+    #SBATCH --dependency=afterok:$5           # Only run after job submitted
 
     export OUTPUT_TEXT=$4   # export so can be used by python script
     python example_print.py

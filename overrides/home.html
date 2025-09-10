@@ -1,0 +1,206 @@
+<!--
+  Copyright (c) 2016-2025 Martin Donath <martin.donath@squidfunk.com>
+
+  Permission is hereby granted, free of charge, to any person obtaining a copy
+  of this software and associated documentation files (the "Software"), to
+  deal in the Software without restriction, including without limitation the
+  rights to use, copy, modify, merge, publish, distribute, sublicense, and/or
+  sell copies of the Software, and to permit persons to whom the Software is
+  furnished to do so, subject to the following conditions:
+
+  The above copyright notice and this permission notice shall be included in
+  all copies or substantial portions of the Software.
+
+  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+  FITNESS FOR A PARTICULAR PURPOSE AND NON-INFRINGEMENT. IN NO EVENT SHALL THE
+  AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+  LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
+  FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS
+  IN THE SOFTWARE.
+-->
+
+{% extends "main.html" %}
+
+<!-- Render hero under tabs -->
+{% block tabs %}
+{{ super() }}
+
+<!-- Additional styles for landing page -->
+<style>
+  html, body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    overflow-x: hidden;
+  }
+
+  .mdx-container {
+    width: 100%;
+    max-width: 100%;
+    margin: 0;
+    padding: 0;
+  }
+
+  /* Let hero section break out of .md-grid */
+  .mdx-container .md-grid {
+    max-width: none;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+  }
+
+  /* Header sits on top of hero, disappears on scroll */
+  .md-header {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background: transparent;
+    box-shadow: none;
+    z-index: 10;
+  }
+
+  /* Remove all extra margins/padding so hero is only content */
+  .md-main,
+  .md-main__inner,
+  .md-content,
+  .md-sidebar--primary,
+  .md-sidebar--secondary,
+  .md-footer {
+    display: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  /* Full-screen hero section */
+  .mdx-hero {
+    position: relative;
+    min-height: 100dvh;  /* dynamic viewport height, safe for mobile */
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+  }
+
+  /* Hero background image */
+  .mdx-hero__image {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+  }
+
+  .mdx-hero__image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* fills entire screen */
+  }
+
+  /* Overlay content (title + buttons) */
+  .mdx-hero__content {
+      position: relative;
+      z-index: 2;
+      text-align: left;         /* left-align text */
+      color: white;
+      top: 8rem; /* space from top */
+      left: 6rem; /* space from left */
+
+      /* place in top-left with some breathing room */
+      align-self: flex-start;
+      justify-self: flex-start;
+  }
+  /* Force headings in hero to be white */
+    .mdx-hero__content h1,
+    .mdx-hero__content h2,
+    .mdx-hero__content h3,
+    .mdx-hero__content h4,
+    .mdx-hero__content h5,
+    .mdx-hero__content h6 {
+      color: white !important;
+    }
+
+    /* Force links in hero to be white */
+    .mdx-hero__content a {
+      color: white !important;
+    }
+    /* Second hero buttons only */
+  .mdx-hero__content .md-button {
+      background-color: black; /* button background */
+      color: white; /* text color */
+      border: 2px solid white; /* optional: border */
+  }
+
+  /* Optional: hover effect */
+  .mdx-hero__content .md-button:hover {
+      background-color: lightsteelblue; /* hover background */
+      color: #ffffff; /* hover text */
+      border-color: lightsteelblue; /* hover border */
+  }
+
+    .mdx-hero__content .md-button.md-button--primary {
+      background-color: forestgreen; /* button background */
+      color: white; /* text color */
+      border: 2px solid forestgreen; /* optional: border */
+  }
+   /* Optional: hover effect */
+  .mdx-hero__content .md-button.md-button--primary:hover {
+      background-color: lightsteelblue; /* hover background */
+      color: #ffffff; /* hover text */
+      border-color: lightsteelblue; /* hover border */
+  }
+</style>
+
+
+<!-- Hero for landing page -->
+<section class="mdx-container">
+    <div class="md-grid md-typeset">
+        <div class="mdx-hero">
+
+            <!-- Hero image -->
+            <div class="mdx-hero__image">
+                <img
+                        src="home_images/earth.jpg"
+                        alt=""
+                        draggable="false"
+                >
+            </div>
+
+            <!-- Hero content -->
+            <div class="mdx-hero__content">
+                <h1><strong>Climate Dynamics Lab</strong></h1>
+                <p>
+                    Documentation and code for the
+                    <a href="https://sites.google.com/view/climate-dynamics-lab" target="_blank"
+                       rel="noopener noreferrer">
+                        <strong>Climate Dynamics Lab</strong>
+                    </a>
+                    at University of St Andrews
+                </p>
+                <a
+                        href="{{ page.next_page.url | url }}"
+                        title="{{ page.next_page.title | e }}"
+                        class="md-button md-button--primary"
+                >
+                    Contributing
+                </a>
+                <a
+                        href="{{ 'data/' | url }}"
+                        title="Material for MkDocs Insiders"
+                        class="md-button"
+                >
+                    Data
+                </a>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}
+
+<!-- Content -->
+{% block content %}{% endblock %}
+
+<!-- Application footer -->
+{% block footer %}{% endblock %}
