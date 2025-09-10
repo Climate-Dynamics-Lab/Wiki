@@ -13,7 +13,8 @@ modify a [*.sh* script](shell_scripting.md) with [some headers](#sbatch) indicat
 - `squeue -t RUNNING` - shows all jobs that are currently running  
 - `squeue -p debug` - shows all jobs queued and running for the partition called `debug`  
 ### SBATCH
-**These must be added to top of *.sh* script, just below the *shebang* line.** [🔗](https://slurm.schedmd.com/sbatch.html)
+The [slurm commands](https://slurm.schedmd.com/sbatch.html) must be added to top of *.sh* script,
+just below the *shebang* line. Some key commands are listed below:
 
 - `#SBATCH --job-name=` - name of job e.g. `test`  
 - `#SBATCH --output=` - file where things printed to console are saved e.g. `output.txt`  
@@ -25,6 +26,8 @@ modify a [*.sh* script](shell_scripting.md) with [some headers](#sbatch) indicat
 !!! note "Options for [hypatia](hypatia.md) can be found [here](https://www.st-andrews.ac.uk/high-performance-computing/help-and-contact/using/)."
 - `#SBATCH --mail-type=` - indicates when you would like to receive email notifications, `NONE`, `FAIL`, `ALL` or `END`.  
 - `#SBATCH --mail-user=` - email address e.g. `jamd1@st-andrews.ac.uk`  
+- `#SBATCH --dependency=afterok:158329` - defers start of a submitted job until job with id `158329` 
+has finished successfully [🔗](https://slurm.schedmd.com/sbatch.html#OPT_dependency)
 
 ## Submitting a job
 To submit a script which prints 'hello world' to the `debug` queue with
@@ -59,7 +62,10 @@ parameters.
 
 For example, if the three files below are all in the current directory then running `python example_run.py`
 will send two jobs to the `debug` queue, both with job name `example` but one on 8 cores per node
-and one on 16.
+and one on 16. 
+
+**Dependency:** The job on 16 cores will also wait for the 8 core job to finish. To do this, 
+we need the `example_depend.sh` script including the dependency slurm command.
 
 ???+ note "Using *CONDA*"
     Because this uses python, you probably want to run it with a relatively modern version of python.
@@ -68,13 +74,17 @@ and one on 16.
 === "example_run.py"
 
     ``` python
-    from os import system
+    import subprocess
     job_name = 'example'
     shell_script = 'example.sh'
     n_nodes = 1
     output_text = 'hello world'
+    dependent_job_id = ''           # first job has no dependency so leave blank
     for n_cores in [8, 16]:
-	    system(f'bash {shell_script} {job_name} {n_nodes} {n_cores} {output_text')
+        submit_string = (f'bash {shell_script if dependent_job_id == '' else shell_script.replace('.sh', '_depend.sh')} '
+                         f'{job_name} {n_nodes} {n_cores} {output_text} {dependent_job_id}')
+        output = subprocess.check_output(submit_string, shell=True).decode("utf-8").strip()  # get job just submitted info
+        dependent_job_id = output.split()[-1]  # Save this job id (last word) for the next submission
     ```
 
 === "example.sh"
@@ -92,6 +102,29 @@ and one on 16.
     #SBATCH --mail-type=END # send email at job completion
     #SBATCH --mail-user=$USER@st-andrews.ac.uk # email address
     #SBATCH --partition=debug # queue to run on
+
+    export OUTPUT_TEXT=$4   # export so can be used by python script
+    python example_print.py
+    exit 0
+    EOT
+    ```
+
+=== "example_depend.sh"
+
+    ``` bash
+    #!/bin/bash
+    sbatch <<EOT
+    #!/bin/bash
+    #SBATCH --job-name=$1
+    #SBATCH --output="outFile"$3".txt"
+    #SBATCH --error="errFile"$3".txt"
+    #SBATCH --time=01:00 # maximum walltime for the job
+    #SBATCH --nodes=$2 # specify number of nodes
+    #SBATCH --ntasks-per-node=$3 # specify number of processors per node
+    #SBATCH --mail-type=END # send email at job completion
+    #SBATCH --mail-user=$USER@st-andrews.ac.uk # email address
+    #SBATCH --partition=debug # queue to run on
+    #SBATCH --dependency=afterok:${5}           # Only run after job submitted
 
     export OUTPUT_TEXT=$4   # export so can be used by python script
     python example_print.py
