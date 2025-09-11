@@ -1,5 +1,5 @@
 site_name: Climate Dynamics Lab
-repo_url: https://github.com/Climate-Dynamics-Lab/Wiki  # provides link to github repo
+repo_url: https://github.com/Climate-Dynamics-Lab/Wiki/  # provides link to github repo
 repo_name: Climate-Dynamics-Lab/Wiki
 
 theme:
