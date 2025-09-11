@@ -106,3 +106,8 @@ nav:
         - code/index.md
         - CEDA/ESGF:
             - Base: code/ceda_esgf/base.md
+        - ERA5:
+            - Get Jasmin ERA5:
+                - code/era5/get_jasmin_era5/index.md
+                - Core: code/era5/get_jasmin_era5/core.md
+                - Utils: code/era5/get_jasmin_era5/utils.md
