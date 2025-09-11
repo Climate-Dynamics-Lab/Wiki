@@ -29,7 +29,7 @@ theme:
       text: Roboto
       code: Roboto Mono
   logo: home_images/st-andrews_logo.png
-  favicon: home_images/st-andrews_logo_black.png
+  favicon: home_images/st-andrews_logo_black.ico
 
 plugins:
   - search
