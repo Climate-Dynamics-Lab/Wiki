@@ -29,4 +29,9 @@ IdentityFile ~/.ssh/id_rsa_jasmin
 ProxyJump login-02.jasmin.ac.uk
 ```
 
-This means I can just type `ssh jasmin` to login directly to the sci server in one go.
+This means I can just type `ssh jasmin` to log in directly to the sci server in one go.
+
+## File Transfer
+As with [Archer2](./archer2.md#file-transfer), I find it easiest to use globus to transfer
+files to/from JASMIN. 
+Instructions for JASMIN are given [here](https://help.jasmin.ac.uk/docs/data-transfer/globus-transfers-with-jasmin/).
