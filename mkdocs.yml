@@ -113,6 +113,5 @@ nav:
                 - Utils: code/era5/get_jasmin_era5/utils.md
         - Utils:
             - Base: code/utils/base.md
-            - Constants: code/utils/constants.md
             - Dataset Slicing: code/utils/ds_slicing.md
             - Xarray: code/utils/xarray.md

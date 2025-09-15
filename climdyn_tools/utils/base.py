@@ -26,6 +26,7 @@ def parse_int_list(value: Union[str, int, List], format_func: Callable = lambda 
     each string has the format given by `format_func` e.g. `['1', '2', '3']` for the default case.
 
     There are three string options for `value`:
+
     * `value='x:y'`, will return all integers between `x` and `y` inclusive.
     * `value='firstX'` will return first X values of `all_values`.
     * `value='firstY'` will return first Y values of `all_values`.
