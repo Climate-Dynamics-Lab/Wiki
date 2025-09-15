@@ -101,7 +101,7 @@ cd $CESM_ROOT
     This should show a clean status for all externals, with no characters in the first two columns of output, 
     as in this example:
 
-    ![image.png](../images/CESM/download_check.jpg){width="500"}
+    ![image.png](images/download_check.jpg){width="500"}
 
     This comes from the [CESM website](https://escomp.github.io/CESM/versions/cesm2.2/html/downloading_cesm.html) 
     (but the screenshot is from my installation).

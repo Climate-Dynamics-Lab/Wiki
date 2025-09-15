@@ -14,7 +14,7 @@ you get the following error:
     Please see the associated dataset catalgoue records in the CEDA Data Catalogue for links to the ERA5.1 datasets.
     ```
     To fix this, you can [select the `archive`](./core.md#climdyn_tools.era5.get_jasmin_era5.core.Find_era5.__init__) i.e. for years 2000-2006, you can call `era5=Find_era5(archive=1)`.
-* Now accepts the variable `sp` (surface pressure) and computes by [taking exponential of `lnsp`](./utils.md##climdyn_tools.era5.get_jasmin_era5.utils.convert_lnsp_to_sp).
+* Now accepts the variable `sp` (surface pressure) and computes by [taking exponential of `lnsp`](./utils.md#climdyn_tools.era5.get_jasmin_era5.utils.convert_lnsp_to_sp).
 * Changed `H` to `h` in date stuff to avoid annoying warning: 
 `FutureWarning: 'H' is deprecated and will be removed in a future version, please use 'h' instead`
 * Gives [warning messages](./core.md#climdyn_tools.era5.get_jasmin_era5.core.Find_era5.warn_missing_years) if the variable selected does not exist.

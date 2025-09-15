@@ -18,7 +18,7 @@ To contribute code to the [`climdyn_tools`](../code/index.md) package, one can f
 * Add the code (e.g. `.py` file) to the [`climdyn_tools`](https://github.com/Climate-Dynamics-Lab/Wiki/tree/main/climdyn_tools) directory of the GitHub repository.
 * Add a corresponding `.md` file to the [`docs`](https://github.com/Climate-Dynamics-Lab/Wiki/tree/main/docs) directory of the repository.
 The comments from the functions can be added to the documentation by adding 
-a [line of text](https://realpython.com/python-project-documentation-with-mkdocs/#insert-information-from-docstrings) to the `.md` file e.g. `::: climdyn_tools.ceda_esgf.base` for the CEDA/ESGF [functions](../code/ceda_esgf/base).
+a [line of text](https://realpython.com/python-project-documentation-with-mkdocs/#insert-information-from-docstrings) to the `.md` file e.g. `::: climdyn_tools.ceda_esgf.base` for the CEDA/ESGF [functions](../code/ceda_esgf/base.md).
 * For this to work, the comments of the functions need to be in the [Google Docstring format](https://sphinxcontrib-napoleon.readthedocs.io/en/latest/example_google.html).
 You should be able to set this automatically in your [IDE](../software/index.md#integrated-development-environment).
 

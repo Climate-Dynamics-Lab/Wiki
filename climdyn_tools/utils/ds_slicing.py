@@ -10,7 +10,7 @@ except ModuleNotFoundError:
 
 def area_weighting(var: xr.DataArray, weights: Optional[DataArray] = None) -> DataArrayWeighted:
     """
-    Apply area weighting to the variable `var` using the `cosine` of latitude: $\cos (\phi)$.
+    Apply area weighting to the variable `var` using the `cosine` of latitude: $\\cos (\\phi)$.
 
     Args:
         var: Variable to weight e.g. `ds.t_surf` to weight the surface temperature, where

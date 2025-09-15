@@ -43,7 +43,7 @@ At any point, the [file](https://ncar.github.io/CESM-Tutorial/notebooks/basics/c
 `$CESM_ROOT/runs/$CASE/CaseStatus` records commands run and whether each step has been successful.
 
 #### Step 1 - Login
-First, you need to login to ARCHER2 [using ssh](../hpc_basics/kennedy.md#login).
+First, you need to login to ARCHER2 [using ssh](../../hpc_basics/hypatia.md#login).
 
 #### Step 2 - Load modules
 Each time you login to ARCHER2, you need to load the python and CESM modules:
@@ -196,7 +196,7 @@ Within the `user_nl_xxx` files, there are three namelist variables which allow y
 (`nhtfrq`) e.g. to daily average, as well as [add extra variables or history files](https://ncar.github.io/CESM-Tutorial/notebooks/namelist/output/output_cam.html#add-extra-variables-and-history-files-fincl) 
 (`fincl`).
 
-The `print_ds_var_list` [function](../code/utils/base.md#isca_tools.utils.base.print_ds_var_list) is quite useful 
+The `print_ds_var_list` [function](../../code/utils/xarray.md#climdyn_tools.utils.xarray.print_ds_var_list) is quite useful 
 for checking which variables are in the CESM default output, and thus to decide which to output at a different 
 frequency.
 
@@ -295,10 +295,10 @@ To restart from the date `yyyy-mm-dd-ssss`, all the files in the [directory](#re
     in the `$RUNDIR`.
 
     === "Before"
-        ![image.png](../images/CESM/branch_before.jpg){width="500"}
+        ![image.png](images/branch_before.jpg){width="500"}
 
     === "After"
-        ![image.png](../images/CESM/branch_after.jpg){width="500"}
+        ![image.png](images/branch_after.jpg){width="500"}
 
 Once the restart files have been transferred, `xmlchange` must be used to indicate that this experiment is a branch run.
 If we are branching off from an experiment with casename `old_case` at the date `yyyy-mm-dd`, then you should run:

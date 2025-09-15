@@ -23,8 +23,9 @@ theme:
     - navigation.expand
     - content.tabs.link
     - navigation.sections
-    # - toc.integrate  # This puts table of contents in right sidebar into left sidebar but makes left sidebar quite big
     - navigation.top
+    - content.math
+  # - toc.integrate  # This puts table of contents in right sidebar into left sidebar but makes left sidebar quite big
   font:
       text: Roboto
       code: Roboto Mono
@@ -64,9 +65,8 @@ markdown_extensions:
       generic: true
 
 extra_javascript:
-  - javascripts/mathjax.js   # allows you to put use latex maths equations.
   - https://polyfill.io/v3/polyfill.min.js?features=es6
-  - https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js
+  - https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js   # allows you to put use latex maths equations.
 
 nav:
     - Home: index.md
@@ -102,6 +102,8 @@ nav:
         - software/index.md
     - Code:
         - code/index.md
+        - CESM:
+            - Load: code/cesm/load.md
         - CEDA/ESGF:
             - Base: code/ceda_esgf/base.md
         - ERA5:
@@ -110,5 +112,7 @@ nav:
                 - Core: code/era5/get_jasmin_era5/core.md
                 - Utils: code/era5/get_jasmin_era5/utils.md
         - Utils:
-            - ds_slicing: code/utils/ds_slicing.md
-            - xarray: code/utils/xarray.md
+            - Base: code/utils/base.md
+            - Constants: code/utils/constants.md
+            - Dataset Slicing: code/utils/ds_slicing.md
+            - Xarray: code/utils/xarray.md

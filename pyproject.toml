@@ -15,7 +15,7 @@ authors = [
 ]
 
 # Install below through pip install .
-dependencies = ["xarray", "numpy", "matplotlib", "pandas", "intake-esgf"]
+dependencies = ["xarray", "numpy", "matplotlib", "pandas", "intake-esgf", "cftime"]
 
 [project.optional-dependencies]
 docs = ["mkdocs", "mkdocs-material", "mkdocs-jupyter", "mkdocstrings-python"]      # install with pip install ".[docs]"

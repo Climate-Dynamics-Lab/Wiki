@@ -5,10 +5,10 @@ use the `ETEST` [compset](https://docs.cesm.ucar.edu/models/cesm2/config/compset
 
 ??? note "Details of `ETEST` and `f19_g17`"
     === "ETEST"
-        ![](../images/CESM/etest_compset.png){width="800"}
+        ![](images/etest_compset.png){width="800"}
 
     === "f19_g17"
-        ![](../images/CESM/f19_g17_resolution.png){width="800"}
+        ![](images/f19_g17_resolution.png){width="800"}
 
 ## Step 1 - Login
 After [logging in](./basics.md#step-1-login) to ARCHER2, you should get a welcome message.
@@ -305,7 +305,7 @@ Submitted job case.st_archive with id 7977850
     Submitted job case.st_archive with id 7977850
     ```
 
-The progress of the job can be monitored and managed with the usual [slurm](../hpc_basics/slurm.md) commands:
+The progress of the job can be monitored and managed with the usual [slurm](../../hpc_basics/slurm.md) commands:
 
 ```bash
 jamd@ln02:/work/n02/n02/jamd/cesm/CESM2.1.3/runs/e.e20.ETEST.f19_g17.test> squeue -u jamd
@@ -320,7 +320,7 @@ The [model output](./basics.md#model-output) should be located in
 corresponding to each of the [model components](./basics.md#code-components), as well as restart and
 log files:
 
-![](../images/CESM/model_output.png){width="500"}
+![](images/model_output.png){width="500"}
 
 ### Timing
 Timing information can be found at `$CASEROOT/timing/cesm_timing.$CASE.$date`. For this experiment, 
@@ -401,22 +401,22 @@ This should end with `SUCCESSFUL TERMINATION OF CPL7-cesm.` if the simulation ra
 
 ### First Plot
 After transferring the output data in `$DOUT_S_ROOT` to JASMIN, the `load_dataset` 
-[function](../code/cesm/load.md#isca_tools.cesm.load.load_dataset) can be used to load the dataset, and 
-the `print_ds_var_list` [function](../code/utils/base.md#isca_tools.utils.base.print_ds_var_list) to find out 
+[function](../../code/cesm/load.md#climdyn_tools.cesm.load.load_dataset) can be used to load the dataset, and 
+the `print_ds_var_list` [function](../../code/utils/xarray.md#climdyn_tools.utils.xarray.print_ds_var_list) to find out 
 what variables are contained in the output data.
 
-Below, I load the atmospheric dataset, find the temperature related variables in the Dataset and plot the 
+Below, I load the atmospheric dataset, find the temperature-related variables in the Dataset and plot the 
 surface temperature averaged over the first month.
 
 === "Code"
     ```python
     import sys
-    sys.path.append('/home/users/jamd1/Isca/')
-    import isca_tools
+    sys.path.append('/home/users/$USER/')
+    import climdyn_tools
     # var_keep = ['TS', 'FSNT', 'FLNT', 'gw', 'LHFLX', 'SHFLX', 'FLNS', 'FSNS', 'PRECSC', 'PRECSL']
     exp_name = 'e.e20.ETEST.f19_g17.test'
-    ds = isca_tools.cesm.load_dataset(exp_name, decode_times=False).load()
-    isca_tools.utils.print_ds_var_list(ds, 'temp')
+    ds = climdyn_tools.cesm.load_dataset(exp_name, decode_times=False).load()
+    climdyn_tools.utils.print_ds_var_list(ds, 'temp')
     ds.TS.plot()
     ```
 === "Output"
@@ -431,8 +431,8 @@ surface temperature averaged over the first month.
     TSMX: Maximum surface temperature over output period
     ```
 === "Plot"
-    ![](../images/CESM/temp_surf.png){width="500"}
+    ![](images/temp_surf.png){width="500"}
 
-Note that for this to work, the `isca_tools` [directory](https://github.com/jduffield65/Isca/tree/main/isca_tools)
-has the path `/home/users/jamd1/Isca/isca_tools` on JASMIN.
+Note that for this to work, the `climdyn_tools` [directory](https://github.com/Climate-Dynamics-Lab/Wiki/tree/main/climdyn_tools)
+has the path `/home/users/$USER/climdyn_tools` on JASMIN.
 

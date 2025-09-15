@@ -29,4 +29,4 @@ IdentityFile ~/.ssh/id_rsa_jasmin
 ProxyJump login-02.jasmin.ac.uk
 ```
 
-    This means I can just type `ssh jasmin` to login directly to the sci server in one go.
+This means I can just type `ssh jasmin` to login directly to the sci server in one go.

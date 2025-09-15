@@ -9,7 +9,7 @@ There is also specific information on getting started on the
 three main HPCs we use in the lab:
 
 * [Hypatia](hypatia.md): University of St Andrews supercomputer, useful for less intensive tasks such 
-as running [Isca](../climate_models/isca.md) simulations.
+as running [Isca](../climate_models/isca/index.md) simulations.
 * [Archer2](archer2.md): UK national supercomputer, useful for more intensive tasks such as 
 running [CESM](../climate_models/cesm/index.md) simulations.
 * [JASMIN](jasmin.md): UKs environmental data analysis platform, useful for data analysis

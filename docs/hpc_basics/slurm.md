@@ -48,8 +48,8 @@ To submit a script which prints 'hello world' to the `debug` queue with
 echo hello world
 ```
 
-To submit this job, you then need to [login](kennedy.md#login) to kennedy and 
-[transfer `example.sh`](kennedy.md#file-transfer) from your local computer to kennedy.
+To submit this job, you then need to [login](hypatia.md#login) to hypatia and 
+[transfer `example.sh`](hypatia.md#file-transfer) from your local computer to hypatia.
 
 Then make sure your current directory contains the `example.sh` file and run `sbatch example.sh`. 
 This should produce the files `example_output.txt` and `example_error.txt` in your current directory
@@ -69,7 +69,7 @@ we need the `example_depend.sh` script including the dependency slurm command.
 
 ???+ note "Using *CONDA*"
     Because this uses python, you probably want to run it with a relatively modern version of python.
-    To do this, [activate a *CONDA* environment](kennedy.md#conda) before running `python example_run.py`.
+    To do this, [activate a *CONDA* environment](hypatia.md#conda) before running `python example_run.py`.
 
 === "example_run.py"
 

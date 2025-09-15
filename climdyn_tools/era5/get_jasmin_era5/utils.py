@@ -1,5 +1,6 @@
 import numpy as np
 import xarray as xr
+from typing import Union, Tuple
 
 def convert_lnsp_to_sp(ds: xr.Dataset, delete_lnsp: bool = True) -> xr.Dataset:
     """
@@ -33,25 +34,18 @@ def convert_lnsp_to_sp(ds: xr.Dataset, delete_lnsp: bool = True) -> xr.Dataset:
 
 
 
-def get_ab(n_levels):
+def get_ab(n_levels: int) -> Tuple[np.ndarray, np.ndarray]:
     """
-    --------------------------------------------------------------------------------
     Returns ECMWF hybrid pressure level a and b coefficients for the specified
     level definition.
 
-    Arguments:
-        int :: n_levels
-            Number of levels to provide coefficients for. Must be one of the
-            following ECMWF level definitions:
-                137, 91, 62, 60, 50, 40, 31, 19, 16
+    Args:
+        n_levels: Number of levels to provide coefficients for. Must be one of the
+            following ECMWF level definitions: 137, 91, 62, 60, 50, 40, 31, 19, 16
 
     Returns:
-        numpy array :: a (length = n_levels + 1)
-            Floating point a coefficients in Pa
-        numpy array :: b (length = n_levels + 1)
-            Floating point b coefficients
-
-    --------------------------------------------------------------------------------
+        a: Floating point a coefficients in Pa (length = n_levels + 1)
+        b: Floating point b coefficients in Pa (length = n_levels + 1)
     """
     level_list = [137, 91, 62, 60, 50, 40, 31, 19, 16]
     if n_levels not in level_list:
@@ -1137,24 +1131,18 @@ def get_ab(n_levels):
     return a, b
 
 
-def get_ph(ps, n_levels):
+def get_ph(ps: Union[np.ndarray, float], n_levels: int) -> np.ndarray:
     """
-    --------------------------------------------------------------------------------
     Returns pressure on half levels for ECMWF hybrid pressure levels.
 
-    Arguments:
-        numpy array or scalar :: ps
-            Surface pressure in Pa
-        int :: n_levels
-            Number of levels to provide coefficients for. Must be one of the
+    Args:
+        ps: Surface pressure in Pa
+        n_levels: Number of levels to provide coefficients for. Must be one of the
             following ECMWF level definitions:
                 137, 91, 62, 60, 50, 40, 31, 19, 16
 
     Returns:
-        numpy array :: ph (shape = (n_levels + 1, ps.shape)
-            Floating point array of pressure values on half levels in units Pa
-
-    --------------------------------------------------------------------------------
+        ph: Floating point array of pressure values on half levels in units Pa (shape = (n_levels + 1, ps.shape))
     """
     a, b = get_ab(n_levels)
     try:
@@ -1173,84 +1161,64 @@ def get_ph(ps, n_levels):
     return ph
 
 
-def get_pl(ps, n_levels):
+def get_pl(ps: Union[np.ndarray, float], n_levels: int) -> np.ndarray:
     """
-    --------------------------------------------------------------------------------
     Returns pressure on full levels for ECMWF hybrid pressure levels.
 
-    Arguments:
-        numpy array or scalar :: ps
-            Surface pressure in Pa
-        int :: n_levels
-            Number of levels to provide coefficients for. Must be one of the
+    Args:
+        ps: Surface pressure in Pa
+        n_levels: Number of levels to provide coefficients for. Must be one of the
             following ECMWF level definitions:
                 137, 91, 62, 60, 50, 40, 31, 19, 16
 
     Returns:
-        numpy array :: pl (shape = (n_levels, ps.shape)
-            Floating point array of pressure on full levels in units Pa
-
-    --------------------------------------------------------------------------------
+        pl: Floating point array of pressure on full levels in units Pa (shape = (n_levels, ps.shape))
     """
     ph = get_ph(ps, n_levels)
     pl = (ph[1:] + ph[:-1]) * 0.5
     return pl
 
 
-def get_dp(ps, n_levels):
+def get_dp(ps: Union[np.ndarray, float], n_levels: int) -> np.ndarray:
     """
-    --------------------------------------------------------------------------------
     Returns difference in pressure between levels for ECMWF hybrid pressure
     levels.
 
-    Arguments:
-        numpy array or scalar :: ps
-            Surface pressure in Pa
-        int :: n_levels
-            Number of levels to provide coefficients for. Must be one of the
+    Args:
+        ps: Surface pressure in Pa
+        n_levels: Number of levels to provide coefficients for. Must be one of the
             following ECMWF level definitions:
                 137, 91, 62, 60, 50, 40, 31, 19, 16
 
     Returns:
-        numpy array :: pl (shape = (n_levels, ps.shape)
-            Floating point array of pressure differential between full levels in
-            units Pa
+        pl: Floating point array of pressure differential between full levels in
+            units Pa (shape = (n_levels, ps.shape))
 
-    --------------------------------------------------------------------------------
     """
     ph = get_ph(ps, n_levels)
     dp = ph[1:] - ph[:-1]
     return dp
 
 
-def get_gz(ps, gzs, T, q, n_levels):
+def get_gz(ps: Union[np.ndarray, float], gzs: Union[np.ndarray, float], T: np.ndarray, q: np.ndarray,
+           n_levels: int) -> np.ndarray:
     """
-    --------------------------------------------------------------------------------
     Calculates the geopotential on model levels for ECMWF hybrid pressure
     levels.
 
-    Arguments:
-        numpy array or scalar :: ps
-            Surface pressure in Pa
-        numpy array or scalar :: gzs
-            Surface geopotential in m**2 s**-2
-        numpy array :: T
-            Atmospheric temperature on levels in K. Must have shape (n_levels,
-            ps.shape)
-        numpy array :: q
-            Atmospheric specific humidity on levels in kg kg**-1. Must have
-            shape (n_levels, ps.shape)
-        int :: n_levels
-            Number of levels to provide coefficients for. Must be one of the
+    Args:
+        ps: Surface pressure in Pa
+        gzs: Surface geopotential in m**2 s**-2
+        T: Atmospheric temperature on levels in K. Must have shape (n_levels, ps.shape)
+        q: Atmospheric specific humidity on levels in kg kg**-1.
+            Must have shape (n_levels, ps.shape)
+        n_levels: Number of levels to provide coefficients for. Must be one of the
             following ECMWF level definitions:
                 137, 91, 62, 60, 50, 40, 31, 19, 16
 
     Returns:
-        numpy array :: gzf (shape = (n_levels, ps.shape)
-            Floating point array of geopotential values on full levels in units
-            m**2 s**-2
-
-    --------------------------------------------------------------------------------
+        gzf: Floating point array of geopotential values on full levels in units m**2 s**-2.
+            Shape = (n_levels, ps.shape)
     """
     # Check that the dimensions of all inputs are consistent
     try:
