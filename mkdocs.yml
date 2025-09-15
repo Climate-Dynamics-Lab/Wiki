@@ -109,3 +109,6 @@ nav:
                 - code/era5/get_jasmin_era5/index.md
                 - Core: code/era5/get_jasmin_era5/core.md
                 - Utils: code/era5/get_jasmin_era5/utils.md
+        - Utils:
+            - ds_slicing: code/utils/ds_slicing.md
+            - xarray: code/utils/xarray.md
