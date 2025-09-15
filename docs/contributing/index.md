@@ -20,6 +20,6 @@ To contribute code to the [`climdyn_tools`](../code/index.md) package, one can f
 The comments from the functions can be added to the documentation by adding 
 a [line of text](https://realpython.com/python-project-documentation-with-mkdocs/#insert-information-from-docstrings) to the `.md` file e.g. `::: climdyn_tools.ceda_esgf.base` for the CEDA/ESGF [functions](../code/ceda_esgf/base).
 * For this to work, the comments of the functions need to be in the [Google Docstring format](https://sphinxcontrib-napoleon.readthedocs.io/en/latest/example_google.html).
-You should be able to set this automatically in your [IDE](../software/ide.md).
+You should be able to set this automatically in your [IDE](../software/index.md#integrated-development-environment).
 
 !!! note "When updating comments in the code file, the documentation will not update in live time.</br>You need to rerun `mkdocs serve` to see the changes."

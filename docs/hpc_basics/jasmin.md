@@ -10,7 +10,8 @@ The lab stores its [data](../data/index.md) on JASMIN at `/gws/nopw/j04/global_e
 * List of Scientific Servers [🔗](https://help.jasmin.ac.uk/docs/interactive-computing/sci-servers/)
 * [Slurm](slurm.md) Queue information [🔗](https://help.jasmin.ac.uk/docs/batch-computing/slurm-queues/)
 * Using Jupyter notebooks on JASMIN without their own service [🔗](https://gist.github.com/bewithankit/1848ba6a4feabd8a750df80b6f3555dc): 
-This has the advantage that you can stay within your chosen [IDE](../software/ide.md), use more memory, and keep working when the notebook service is down.
+This has the advantage that you can stay within your chosen [IDE](../software/index.md#integrated-development-environment), 
+use more memory, and keep working when the notebook service is down.
 
 ## Getting started
 

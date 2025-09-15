@@ -100,8 +100,6 @@ nav:
             - CEDA/ESGF: data/cmip/CEDAESGF_Wrapper.ipynb  # takes title from first #H1 heading
     - Software:
         - software/index.md
-        - IDE: software/ide.md
-        - Python: software/python.md
     - Code:
         - code/index.md
         - CEDA/ESGF:
