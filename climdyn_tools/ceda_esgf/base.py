@@ -236,6 +236,9 @@ def compare_cat_res_pivot(cat_df: pd.DataFrame, res_df: pd.DataFrame) -> pd.Data
     showing where each (member_id, variable_id) combination exists:
     'cat only', 'res only', or 'both'.
 
+    If res_df is empty or missing required columns, bypass comparison and return
+    a pivot table indicating all entries are from cat_df only.
+
     Args:
         cat_df: Catalog dataframe with columns `['member_id', 'variable_id']`
         res_df: Result dataframe with columns `['member_id', 'variable_id']`
@@ -243,11 +246,27 @@ def compare_cat_res_pivot(cat_df: pd.DataFrame, res_df: pd.DataFrame) -> pd.Data
     Returns:
         Pivot table: `index=member_id, columns=variable_id, values='cat only'/'res only'/'both'`
     """
-    # Compare as in the previous function
+    required_cols = {'member_id', 'variable_id'}
+    
+    # Check columns for cat_df
+    missing_cat_cols = required_cols - set(cat_df.columns)
+    if missing_cat_cols:
+        raise KeyError(f"cat_df is missing columns: {missing_cat_cols}")
+
+    # Bypass if res_df is empty or missing required columns
+    missing_res_cols = required_cols - set(res_df.columns)
+    if res_df.empty or missing_res_cols:
+        print("Warning: res_df is empty or missing required columns. Marking all entries as 'ESGF_ONLY'")
+        cat_set = set(cat_df[['member_id', 'variable_id']].itertuples(index=False, name=None))
+        records = [{'member_id': k[0], 'variable_id': k[1], 'status': 'ESGF_ONLY'} for k in cat_set]
+        df = pd.DataFrame(records)
+        return df.pivot(index='member_id', columns='variable_id', values='status')
+
+    # Proceed with normal comparison
     cat_set = set(cat_df[['member_id', 'variable_id']].itertuples(index=False, name=None))
     res_set = set(res_df[['member_id', 'variable_id']].itertuples(index=False, name=None))
     all_keys = cat_set | res_set
-
+    
     records = []
     for key in all_keys:
         if key in cat_set and key in res_set:
@@ -259,10 +278,7 @@ def compare_cat_res_pivot(cat_df: pd.DataFrame, res_df: pd.DataFrame) -> pd.Data
         records.append({'member_id': key[0], 'variable_id': key[1], 'status': status})
 
     df = pd.DataFrame(records)
-
-    # Pivot to get member_id x variable_id table
-    pivot = df.pivot(index='member_id', columns='variable_id', values='status')
-    return pivot
+    return df.pivot(index='member_id', columns='variable_id', values='status')
     
 def extract_r(member_id: str) -> int:
     """
