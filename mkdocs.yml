@@ -90,6 +90,10 @@ nav:
             - Basics: climate_models/cesm/basics.md
             - First Run: climate_models/cesm/first_run.md
             - Simulations: climate_models/cesm/simulations.md
+        - CESM on Hypatia:
+            - climate_models/cesm_on_hypatia/index.md
+            - Installation: climate_models/cesm_on_hypatia/installation.md
+            - Simulations: climate_models/cesm_on_hypatia/running_sim.md
     - Data:
         - data/index.md
         - ERA5:
